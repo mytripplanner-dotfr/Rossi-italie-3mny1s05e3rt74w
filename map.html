@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Voyage - Rossi italie</title>
+  <style>
+    :root { --primary: #1a73e8; --bg-sidebar: #ffffff; }
+    body { margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; display: flex; height: 100vh; overflow: hidden; color: #333; }
+    
+    #sidebar { width: 400px; background: var(--bg-sidebar); height: 100%; display: flex; flex-direction: column; box-shadow: 4px 0 15px rgba(0,0,0,0.08); z-index: 10; transition: 0.3s ease; }
+    #map { flex: 1; height: 100%; position: relative; }
+
+    /* Header Dynamique */
+    .sidebar-header { 
+        padding: 15px 20px; 
+        border-bottom: 1px solid #eee; 
+        background: #fff; 
+        flex-shrink: 0; 
+        display: flex; 
+        flex-direction: column; 
+        transition: all 0.3s ease;
+    }
+    
+    .sidebar-header.compact { 
+        flex-direction: row; 
+        align-items: center; 
+        padding: 10px 15px;
+        gap: 15px;
+    }
+    .sidebar-header.compact h3 { margin: 0; font-size: 14px; white-space: nowrap; }
+    .sidebar-header.compact .filter-group { margin-top: 0; flex: 1; }
+
+    .filter-group { 
+        display: flex; 
+        overflow-x: auto; 
+        white-space: nowrap; 
+        gap: 8px; 
+        margin-top: 10px; 
+        padding-bottom: 5px;
+        scrollbar-width: none;
+    }
+    .filter-group::-webkit-scrollbar { display: none; }
+
+    .filter-btn { 
+        padding: 6px 14px; 
+        border: 1px solid #dfe1e5; 
+        border-radius: 20px; 
+        background: white; 
+        cursor: pointer; 
+        font-size: 13px; 
+        font-weight: 500;
+        flex-shrink: 0;
+    }
+    .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+    /* Contenu */
+    #poi-content { flex-grow: 1; overflow-y: auto; position: relative; }
+    .close-details { 
+        position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.6); 
+        color: white; border: none; width: 36px; height: 36px; border-radius: 50%; 
+        cursor: pointer; z-index: 20; font-size: 20px; display: flex; align-items: center; justify-content: center;
+    }
+    
+    .poi-image { width: 100%; height: 250px; object-fit: cover; }
+    .poi-body { padding: 20px; }
+    .poi-body h2 { margin: 0 0 10px 0; font-size: 22px; padding-right: 35px; }
+    .badge { display: inline-block; background: #f1f3f4; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-right: 5px; }
+    .badge-day { background: #e8f0fe; color: var(--primary); }
+    .poi-description { font-size: 15px; line-height: 1.6; color: #444; margin-bottom: 25px; }
+    
+    .btn-group { display: flex; gap: 10px; padding: 0 20px 20px 20px; }
+    .btn { flex: 1; text-align: center; padding: 14px; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 14px; }
+    .btn-main { background: var(--primary); color: white; }
+    .btn-outline { border: 1px solid #dadce0; color: #1a73e8; }
+
+    .placeholder { padding: 40px 20px; text-align: center; color: #70757a; font-size: 14px; }
+
+    @media (max-width: 768px) {
+      body { flex-direction: column-reverse; }
+      #sidebar { width: 100%; height: auto; min-height: 80px; max-height: 60%; }
+      #sidebar.expanded { height: 60%; }
+      #map { height: auto; flex-grow: 1; }
+      .placeholder { display: none; }
+      .poi-image { height: 180px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="sidebar">
+    <div class="sidebar-header" id="header">
+      <h3 id="dest-title">Rossi italie</h3>
+      <div class="filter-group" id="day-filters">
+        <button class="filter-btn active" onclick="filterByDay('all', this)">Tous</button>
+      </div>
+    </div>
+    <div id="poi-content">
+      <div class="placeholder">Choisissez un jour pour explorer le voyage.</div>
+    </div>
+  </div>
+
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
+  <script>
+    let map, markerCluster;
+    let markersArray = [];
+    const locations = [{"lat":43.0442745,"lng":11.8137808,"name":"Chianciano Terme, Toscane","jour":1,"titre":"Arrivée à Rome et Douceur Toscane","type":"activité","markerColor":"blue","streetViewUrl":"https://maps.googleapis.com/maps/api/streetview?size=600x400&location=43.0442745,11.8137808&key=AIzaSyB5WUNvRC9eOjHRLt92fs4hsp0Auje3aAI","streetViewLinkUrl":"https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=43.0442745,11.8137808"},{"lat":43.0984902,"lng":11.7873736,"name":"Montepulciano, Toscane","jour":3,"titre":"Charme de Montepulciano et Dégustation","type":"activité","markerColor":"blue","streetViewUrl":"https://maps.googleapis.com/maps/api/streetview?size=600x400&location=43.0984902,11.7873736&key=AIzaSyB5WUNvRC9eOjHRLt92fs4hsp0Auje3aAI","streetViewLinkUrl":"https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=43.0984902,11.7873736"},{"lat":42.9266598,"lng":11.7006903,"name":"Bagni San Filippo, Toscane","jour":4,"titre":"Sources Naturelles de Bagni San Filippo","type":"activité","markerColor":"blue","streetViewUrl":"https://maps.googleapis.com/maps/api/streetview?size=600x400&location=42.9266598,11.7006903&key=AIzaSyB5WUNvRC9eOjHRLt92fs4hsp0Auje3aAI","streetViewLinkUrl":"https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=42.9266598,11.7006903"},{"lat":43.0776004,"lng":11.6774515,"name":"Pienza & Val d'Orcia, Toscane","jour":5,"titre":"Val d'Orcia et Saveurs de Pienza","type":"activité","markerColor":"blue","streetViewUrl":"https://maps.googleapis.com/maps/api/streetview?size=600x400&location=43.0776004,11.6774515&key=AIzaSyB5WUNvRC9eOjHRLt92fs4hsp0Auje3aAI","streetViewLinkUrl":"https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=43.0776004,11.6774515"},{"lat":42.66323269999999,"lng":11.5042774,"name":"Saturnia, Toscane","jour":6,"titre":"Cascades Thermales de Saturnia","type":"activité","markerColor":"blue","streetViewUrl":"https://maps.googleapis.com/maps/api/streetview?size=600x400&location=42.66323269999999,11.5042774&key=AIzaSyB5WUNvRC9eOjHRLt92fs4hsp0Auje3aAI","streetViewLinkUrl":"https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=42.66323269999999,11.5042774"},{"lat":41.8967068,"lng":12.4822025,"name":"Alentours de Rome","jour":7,"titre":"Derniers Instants Toscans et Retour vers Rome","type":"activité","markerColor":"blue","streetViewUrl":"https://maps.googleapis.com/maps/api/streetview?size=600x400&location=41.8967068,12.4822025&key=AIzaSyB5WUNvRC9eOjHRLt92fs4hsp0Auje3aAI","streetViewLinkUrl":"https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=41.8967068,12.4822025"},{"lat":41.8034632,"lng":12.2519211,"name":"Rome Fiumicino (FCO)","jour":8,"titre":"Départ d'Italie","type":"activité","markerColor":"blue","streetViewUrl":"https://maps.googleapis.com/maps/api/streetview?size=600x400&location=41.8034632,12.2519211&key=AIzaSyB5WUNvRC9eOjHRLt92fs4hsp0Auje3aAI","streetViewLinkUrl":"https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=41.8034632,12.2519211"}];
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 10,
+        center: { lat: 42.644346799999994, lng: 11.888242457142857 },
+        zoomControl: true,
+        streetViewControl: false,
+        mapTypeControl: false,
+        styles: [{ featureType: "poi", elementType: "labels", stylers: [{ visibility: "off" }] }]
+      });
+
+      const days = [...new Set(locations.map(l => l.jour))].sort((a,b) => a - b);
+      const filterContainer = document.getElementById('day-filters');
+      days.forEach(day => {
+        const btn = document.createElement('button');
+        btn.className = 'filter-btn';
+        btn.innerText = 'J' + day;
+        btn.onclick = function() { filterByDay(day, this); };
+        filterContainer.appendChild(btn);
+      });
+
+      locations.forEach(loc => {
+        const marker = new google.maps.Marker({
+          position: { lat: loc.lat, lng: loc.lng },
+          icon: `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=$${loc.markerColor}-dot.png`,
+          label: { text: String(loc.jour), color: 'white', fontSize: '11px', fontWeight: 'bold' },
+          data: loc
+        });
+        marker.addListener('click', () => updateSidebar(loc));
+        markersArray.push(marker);
+      });
+
+      markerCluster = new markerClusterer.MarkerClusterer({ map, markers: markersArray });
+    }
+
+    function updateSidebar(poi) {
+      const container = document.getElementById('poi-content');
+      const header = document.getElementById('header');
+      document.getElementById('sidebar').classList.add('expanded');
+      header.classList.add('compact');
+      
+      container.innerHTML = `
+        <div class="poi-detail">
+          <button class="close-details" onclick="closeSidebar()">✕</button>
+          <img src="${poi.streetViewUrl}" class="poi-image">
+          <div class="poi-body">
+            <div class="badge-container">
+              <span class="badge badge-day">Jour ${poi.jour}</span>
+              <span class="badge">${poi.type}</span>
+            </div>
+            <h2>${poi.name}</h2>
+            <p class="poi-description">${poi.titre}</p>
+          </div>
+          <div class="btn-group">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=${poi.lat},${poi.lng}" target="_blank" class="btn btn-main">Itinéraire</a>
+            <a href="${poi.streetViewLinkUrl}" target="_blank" class="btn btn-outline">Street View</a>
+          </div>
+        </div>
+      `;
+      container.scrollTop = 0;
+      map.panTo({ lat: poi.lat, lng: poi.lng });
+    }
+
+    function closeSidebar() {
+      document.getElementById('poi-content').innerHTML = '<div class="placeholder">Choisissez un jour pour commencer.</div>';
+      document.getElementById('sidebar').classList.remove('expanded');
+      document.getElementById('header').classList.remove('compact');
+    }
+
+    function filterByDay(day, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filtered = day === 'all' ? markersArray : markersArray.filter(m => m.data.jour === day);
+      markerCluster.clearMarkers();
+      markerCluster.addMarkers(filtered);
+
+      if (filtered.length > 0) {
+        const bounds = new google.maps.LatLngBounds();
+        filtered.forEach(m => bounds.extend(m.getPosition()));
+        
+        // Zoom plus prononcé
+        map.fitBounds(bounds);
+        
+        // Ajustement après fitBounds pour éviter un zoom trop lointain ou trop proche
+        google.maps.event.addListenerOnce(map, 'idle', function() {
+            if (day !== 'all') {
+                if (filtered.length === 1) {
+                    map.setZoom(16); // Zoom très proche pour une seule étape
+                } else if (map.getZoom() > 15) {
+                    map.setZoom(15); // Limite de zoom pour plusieurs étapes
+                }
+                updateSidebar(filtered[0].data);
+            } else {
+                closeSidebar();
+            }
+        });
+      }
+      btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5WUNvRC9eOjHRLt92fs4hsp0Auje3aAI&callback=initMap"></script>
+</body>
+</html>
