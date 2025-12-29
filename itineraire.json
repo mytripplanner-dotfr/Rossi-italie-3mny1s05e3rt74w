@@ -1,0 +1,191 @@
+{
+  "pays": "Italie",
+  "drapeau": "🇮🇹",
+  "symbole": "🍝",
+  "titre": "Évasion Relaxante en Toscane Thermale",
+  "budget_total": "2050€",
+  "duree": "8 jours",
+  "date_debut": "2026-01-19",
+  "date_fin": "2026-01-26",
+  "temps_vol": "11h35 (depuis Bodin Khel, Pakistan)",
+  "escale": "1",
+  "jours": [
+    {
+      "jour": 1,
+      "symbole": "🛬",
+      "titre": "Arrivée à Rome et Douceur Toscane",
+      "legende": "Après un long voyage, atterrissez à Rome Fiumicino et prenez la route vers la charmante Toscane. Installez-vous dans votre hébergement à Chianciano Terme, une ville réputée pour ses eaux thermales, et profitez d'une soirée paisible pour vous acclimater.",
+      "lieu": "Chianciano Terme, Toscane",
+      "activites": [
+        "<strong>🛬</strong>: Arrivée à l'aéroport de Rome Fiumicino (FCO).",
+        "<strong>🚗</strong>: Transfert en voiture de location vers Chianciano Terme (environ 2h30 de route).",
+        "<strong>🛏️</strong>: Installation à votre hôtel et dîner léger pour une première immersion."
+      ],
+      "illustration": "jour1.jpg",
+      "encarts": [
+        {
+          "symbole": "ℹ️",
+          "titre": "À savoir",
+          "texte": "La location de voiture est fortement recommandée pour explorer la Toscane à votre rythme et accéder aux sites thermaux."
+        }
+      ]
+    },
+    {
+      "jour": 2,
+      "symbole": "♨️",
+      "titre": "Détente aux Thermes Sensoriels",
+      "legende": "Plongez dans un havre de paix aux Thermes Sensoriels de Chianciano Terme. Laissez-vous envelopper par les bienfaits des eaux thermales et des parcours bien-être, puis explorez le charme médiéval de la vieille ville pour une fin de journée en douceur.",
+      "lieu": "Chianciano Terme, Toscane",
+      "activites": [
+        "<strong>♨️</strong>: Matinée de relaxation aux Thermes Sensoriels de Chianciano Terme. Profitez des piscines, saunas et bains à remous.",
+        "<strong>🚶‍♀️</strong>: Promenade tranquille dans le centre historique de Chianciano Vecchia. Admirez les vues panoramiques et les ruelles pittoresques.",
+        "<strong>🍽️</strong>: Dégustation de spécialités toscanes dans un restaurant local."
+      ],
+      "illustration": "jour2.jpg",
+      "encarts": [
+        {
+          "symbole": "🧖‍♀️",
+          "titre": "Conseil bien-être",
+          "texte": "Pensez à réserver vos créneaux aux thermes à l'avance, surtout en période hivernale, pour garantir votre accès."
+        }
+      ]
+    },
+    {
+      "jour": 3,
+      "symbole": "🍇",
+      "titre": "Charme de Montepulciano et Dégustation",
+      "legende": "Partez à la découverte de Montepulciano, une magnifique ville médiévale perchée sur une colline. Flânez dans ses rues élégantes, admirez son architecture Renaissance et terminez la journée par une dégustation apaisante du célèbre Vino Nobile.",
+      "lieu": "Montepulciano, Toscane",
+      "activites": [
+        "<strong>🏰</strong>: Visite matinale de Montepulciano. Explorez la Piazza Grande, le Duomo et les palais historiques.",
+        "<strong>🚶‍♂️</strong>: Balade douce le long des remparts pour des vues imprenables sur la campagne toscane.",
+        "<strong>🍷</strong>: Dégustation de Vino Nobile di Montepulciano dans une cave locale. Une expérience relaxante et savoureuse."
+      ],
+      "illustration": "jour3.jpg",
+      "encarts": [
+        {
+          "symbole": "💡",
+          "titre": "Astuce",
+          "texte": "Les rues de Montepulciano sont pavées et en pente, prévoyez des chaussures confortables pour la marche."
+        }
+      ]
+    },
+    {
+      "jour": 4,
+      "symbole": "🏞️",
+      "titre": "Sources Naturelles de Bagni San Filippo",
+      "legende": "Aventurez-vous vers les sources thermales naturelles de Bagni San Filippo, un lieu magique où l'eau chaude sculpte des formations calcaires uniques. Profitez d'un bain en plein air dans un cadre féerique, une véritable immersion relaxante dans la nature toscane.",
+      "lieu": "Bagni San Filippo, Toscane",
+      "activites": [
+        "<strong>🚗</strong>: Route panoramique vers Bagni San Filippo. Admirez les paysages vallonnés de la Toscane.",
+        "<strong>♨️</strong>: Baignade et détente dans les piscines naturelles du \"Fosso Bianco\". L'eau chaude et le cadre forestier sont parfaits pour la relaxation.",
+        "<strong>🚶‍♀️</strong>: Courte promenade le long du ruisseau pour admirer les formations rocheuses uniques, comme la \"Baleine Blanche\"."
+      ],
+      "illustration": "jour4.jpg",
+      "encarts": [
+        {
+          "symbole": "⚠️",
+          "titre": "Attention",
+          "texte": "Les roches peuvent être glissantes autour des sources naturelles. Portez des chaussures adaptées et soyez prudent."
+        }
+      ]
+    },
+    {
+      "jour": 5,
+      "symbole": "🧀",
+      "titre": "Val d'Orcia et Saveurs de Pienza",
+      "legende": "Traversez les paysages emblématiques du Val d'Orcia, classé au patrimoine mondial de l'UNESCO, avec ses collines douces et ses cyprès. Visitez Pienza, la \"ville idéale\" de la Renaissance, et laissez-vous tenter par une dégustation de son célèbre fromage Pecorino.",
+      "lieu": "Pienza & Val d'Orcia, Toscane",
+      "activites": [
+        "<strong> scenic_drive</strong>: Matinée de découverte du Val d'Orcia. Arrêtez-vous pour des photos des paysages iconiques.",
+        "<strong>🏰</strong>: Visite de Pienza. Explorez son centre historique et ses boutiques artisanales.",
+        "<strong>🧀</strong>: Dégustation de Pecorino di Pienza dans une fromagerie locale. Une expérience gustative douce et authentique."
+      ],
+      "illustration": "jour5.jpg",
+      "encarts": [
+        {
+          "symbole": "📸",
+          "titre": "Photographie",
+          "texte": "Le Val d'Orcia offre des opportunités de photos incroyables, surtout au lever ou au coucher du soleil."
+        }
+      ]
+    },
+    {
+      "jour": 6,
+      "symbole": "💧",
+      "titre": "Cascades Thermales de Saturnia",
+      "legende": "Vivez une expérience thermale unique aux Cascate del Mulino de Saturnia, des cascades naturelles où l'eau sulfureuse jaillit à 37°C. Profitez de ces piscines naturelles en plein air, un moment de pure relaxation au cœur de la Maremme toscane.",
+      "lieu": "Saturnia, Toscane",
+      "activites": [
+        "<strong>🚗</strong>: Trajet vers Saturnia, une autre perle thermale de la Toscane.",
+        "<strong>♨️</strong>: Baignade et détente aux célèbres Cascate del Mulino. L'accès est gratuit et ouvert 24h/24.",
+        "<strong>💆‍♀️</strong>: Après-midi de relaxation dans les environs, peut-être un massage ou un moment de lecture dans un cadre paisible."
+      ],
+      "illustration": "jour6.jpg",
+      "encarts": [
+        {
+          "symbole": "🧴",
+          "titre": "Conseil",
+          "texte": "L'eau de Saturnia est riche en soufre, ce qui peut laisser une odeur sur les maillots. Prévoyez un maillot de bain dédié."
+        }
+      ]
+    },
+    {
+      "jour": 7,
+      "symbole": "🚶‍♂️",
+      "titre": "Derniers Instants Toscans et Retour vers Rome",
+      "legende": "Profitez d'une dernière matinée paisible en Toscane, peut-être pour une ultime balade ou un café en terrasse. Reprenez ensuite la route vers les environs de Rome, pour une dernière nuit avant votre départ, en gardant en mémoire les paysages et la douceur de vivre italienne.",
+      "lieu": "Alentours de Rome",
+      "activites": [
+        "<strong>☕</strong>: Petit-déjeuner relaxant et derniers achats de souvenirs locaux.",
+        "<strong>🚗</strong>: Retour en voiture vers les environs de l'aéroport de Rome Fiumicino (FCO).",
+        "<strong>🛏️</strong>: Installation dans un hôtel près de l'aéroport ou dans une ville charmante comme Ostia Antica pour une dernière soirée."
+      ],
+      "illustration": "jour7.jpg",
+      "encarts": [
+        {
+          "symbole": "✈️",
+          "titre": "Préparation au départ",
+          "texte": "Assurez-vous de faire le plein de la voiture avant de la rendre à l'aéroport pour éviter des frais supplémentaires."
+        }
+      ]
+    },
+    {
+      "jour": 8,
+      "symbole": "🛫",
+      "titre": "Départ d'Italie",
+      "legende": "Après un séjour ressourçant en Toscane, il est temps de prendre votre vol retour depuis l'aéroport de Rome Fiumicino. Emportez avec vous les souvenirs de paysages magnifiques, de moments de détente et de la délicieuse cuisine italienne.",
+      "lieu": "Rome Fiumicino (FCO)",
+      "activites": [
+        "<strong>✈️</strong>: Départ de l'aéroport de Rome Fiumicino (FCO)."
+      ],
+      "illustration": "jour8.jpg",
+      "encarts": []
+    }
+  ],
+  "detail_budget": [
+    { "titre": "Budget vol:", "legende": "813 €/pers (A/R)", "symbole": "🛬" },
+    { "titre": "Budget transports:", "legende": "225 €/pers (location voiture + essence)", "symbole": "🚗" },
+    { "titre": "Budget repas:", "legende": "420 €/pers (environ 60€/jour)", "symbole": "🥗" },
+    { "titre": "Budget logement:", "legende": "440 €/pers (base 3* pour 7 nuits)", "symbole": "🛏️" },
+    { "titre": "Budget activités:", "legende": "150 €/pers (thermes, dégustations)", "symbole": "🎭" }
+  ],
+  "periodes_ideales": [
+    { "titre": "Printemps (Avril-Juin)", "symbole": "🌸" },
+    { "titre": "Automne (Septembre-Octobre)", "symbole": "🍂" },
+    { "titre": "Hiver (Janvier-Mars) pour les thermes", "symbole": "❄️" }
+  ],
+  "infos_pratiques": [
+    { "titre": "En Janvier, les températures en Toscane varient entre 0 et 10°C. Prévoir des vêtements chauds, un imperméable et des chaussures confortables.", "symbole": "🧣" },
+    { "titre": "Les cartes de crédit sont largement acceptées. Avoir un peu de liquide peut être utile pour les petits commerces ou marchés.", "symbole": "💳" },
+    { "titre": "Le permis de conduire pakistanais (avec traduction internationale si nécessaire) est suffisant pour la location de voiture. Conduite à droite.", "symbole": "🚗" },
+    { "titre": "Une carte SIM locale ou eSIM est recommandée pour la navigation GPS et les communications. Le Wi-Fi est disponible dans la plupart des hébergements.", "symbole": "📶" },
+    { "titre": "L'italien est la langue officielle. Quelques notions de base seront appréciées, mais l'anglais est souvent parlé dans les zones touristiques.", "symbole": "🗣️" }
+  ],
+  "liens_utiles": [
+    { "legende": "Vols", "titre": "Réserve ton vol", "url": "https://www.kayak.fr/flights/ISB-FCO/2026-01-19/2026-01-26", "symbole": "🛬" },
+    { "legende": "Infos officielles et inspirations", "titre": "Tourisme Italie", "url": "https://www.italia.it/fr", "symbole": "📘" },
+    { "legende": "Location de voiture", "titre": "Comparateur de location", "url": "https://www.rentalcars.com/", "symbole": "🚗" },
+    { "legende": "Météo", "titre": "Météo Italie", "url": "https://www.ilmeteo.it/", "symbole": "🌤️" }
+  ]
+}
